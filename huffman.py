@@ -5,7 +5,7 @@ class HuffmanNode:
 			Node Object that supports Merging operation as in the
 		Huffman Encoding Algorithm.
 
-		self.list_of_chars: list of characters at a node which share
+		self.alphabet: list of characters at a node which share
 			a common ancestors in the Huffman Tree.
 		self.count: number of times the element in the list of
 			characters have occured. Used for statistical purpose
@@ -19,9 +19,9 @@ class HuffmanNode:
 		>>> hn3
 		HuffmanNode(['A', 'B', 'C']|300)		
 	"""
-	def __init__(self, list_of_chars,count):
+	def __init__(self, alphabet,count):
 		"Create an HuffmanNode() Object"
-		self.list_of_chars = list_of_chars
+		self.alphabet = alphabet
 		self.count = count
 
 	def merge(self, other):
@@ -30,13 +30,13 @@ class HuffmanNode:
 			HuffmanNode() which has all the element of the two nodes 
 			self and other, with count being sum of their counts.
 		"""
-		list_of_chars = self.list_of_chars + other.list_of_chars
+		alphabet = self.alphabet + other.alphabet
 		count = self.count + other.count
-		return HuffmanNode(list_of_chars,count)
+		return HuffmanNode(alphabet,count)
 
 	def __repr__(self):
 		"Returns string representation of an HuffmanNode() Object"
-		return "HuffmanNode("+str(self.list_of_chars)\
+		return "HuffmanNode("+str(self.alphabet)\
 			+"|"+str(self.count)+")"
 
 class Huffman:
@@ -113,10 +113,10 @@ class Huffman:
 			last_node = nodes.pop()
 			last_second_node = nodes.pop()
 			
-			for char in last_second_node.list_of_chars:
+			for char in last_second_node.alphabet:
 				code[char] += "0"
 			
-			for char in last_node.list_of_chars:
+			for char in last_node.alphabet:
 				code[char] += "1"
 			
 			new_node = last_second_node.merge(last_node)
